@@ -1,0 +1,195 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>BPrep - Interview</title>
+    <link rel="stylesheet" href="output.css">
+</head>
+
+<body class="bg-gray-50">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.5.1/jspdf.umd.min.js"></script>
+    <nav class="bg-white shadow-md">
+        <div class="container mx-auto px-4 flex justify-between items-center h-16">
+            <a href="/" class="text-2xl font-bold text-red-600">BPrep</a>
+            <div class="flex space-x-4">
+                <a href="../base.html" class="nav-link px-3 py-2 text-gray-700 hover:text-red-600">Dashboard</a>
+                <button onclick="logout()" class="modern-btn bg-red-500 text-white">
+                    Logout
+                </button>
+            </div>
+        </div>
+    </nav>
+
+    <div class="container mx-auto flex mt-6">
+        <aside class="w-64 bg-white shadow-md p-6">
+            <nav>
+                <a href="profile.html" class="block px-4 py-3 hover:bg-red-50 transition">Profile</a>
+                <a href="interview2.html" class="block px-4 py-3 hover:bg-red-50 transition">Interview Questions</a>
+            </nav>
+        </aside>
+
+        <main class="flex-1 p-8">
+            <section class="bg-white rounded-lg shadow-md p-6">
+                <div class="flex justify-between items-center mb-6">
+                    <h2 class="text-2xl font-semibold text-gray-800">Interview Questions</h2>
+                    <button onclick="downloadAnswers()"
+                        class="modern-btn bg-green-500 text-white flex items-center space-x-2">
+                        <img src="./arrow-down-to-line.svg" alt="downloadAns">
+                    </button>
+                </div>
+
+                <form id="interviewForm" class="space-y-6">
+                    <div class="space-y-2 relative">
+                        <span class="flex justify-between items-center">
+                            <label class="block text-sm font-medium text-gray-900">
+                                Tell me about Yourself?
+                            </label>
+                            <div class="flex items-center space-x-2">
+                                <button
+                                    class="bg-gray-200 hover:bg-gray-300 shadow hover:shadow-md transition-all duration-200 p-2 rounded group relative"
+                                    data-tooltip="Edit Question">
+                                    <img src="./pencil-line.svg" alt="pencil-icon" class="w-4 h-4 cursor-pointer
+                                    group-hover:scale-110 transition-transform duration-200
+                                    group-hover:rotate-6 group-hover:text-blue-500">
+                                    <span class="tooltip">Edit Question</span>
+                                </button>
+                                <button
+                                    class="bg-red-100 hover:bg-red-200 shadow hover:shadow-md transition-all duration-200 p-2 rounded group relative"
+                                    data-tooltip="Delete Question">
+                                    <img src="./trash-2.svg" alt="trash-icon" class="w-4 h-4 cursor-pointer
+                                    group-hover:scale-110 transition-transform duration-200
+                                    group-hover:rotate-6 group-hover:text-red-600">
+                                    <span class="tooltip">Delete Question</span>
+                                </button>
+                                <button
+                                    class="bg-green-100 hover:bg-green-200 shadow hover:shadow-md transition-all duration-200 p-2 rounded group relative"
+                                    data-tooltip="Add Question">
+                                    <img src="./square-plus.svg" alt="add-icon" class="w-4 h-4 cursor-pointer
+                                    group-hover:scale-110 transition-transform duration-200
+                                    group-hover:rotate-6 group-hover:text-green-600">
+                                    <span class="tooltip group">Add Question</span>
+                                </button>
+                            </div>
+                        </span>
+                        <textarea name="motivation" rows="4"
+                            class="w-full px-3 py-2 border border-gray-300 rounded-md resize-none focus:ring-red-500 focus:border-red-500">
+                        </textarea>
+
+                        <div class="flex justify-end items-center mt-2">
+                            <button
+                                class="bg-blue-100 hover:bg-blue-200 p-2 rounded-full group transition-all duration-200 hover:shadow-md"
+                                data-number-of-followups="3">
+                                <img src="./arrow-big-right-dash.svg" alt="generate" class="w-6 h-6">
+                                <span class="tooltip group">Generate Followups</span>
+                            </button>
+                        </div>
+
+                        <div class="follow-up-container mt-4 hidden"></div>
+                    </div>
+
+                    <style>
+                        /* Tooltip container */
+                        .group {
+                            position: absolute;
+                        }
+
+                        /* Tooltip text */
+                        .tooltip {
+                            visibility: hidden;
+                            position: absolute;
+                            z-index: 10;
+                            bottom: -130%;
+                            /* Adjusted to position below the button */
+                            left: 50%;
+                            transform: translateX(-50%);
+                            background-color: rgba(0, 0, 0, 0.75);
+                            color: white;
+                            text-align: center;
+                            padding: 5px 10px;
+                            border-radius: 4px;
+                            opacity: 0;
+                            transition: opacity 0.3s ease, visibility 0.3s ease;
+                            white-space: nowrap;
+                            font-size: 0.75rem;
+                        }
+
+                        /* Show tooltip when hovering over the group */
+                        .group:hover .tooltip {
+                            visibility: visible;
+                            opacity: 1;
+                        }
+                    </style>
+
+
+
+
+                </form>
+                <div><a href="calendly.com"><button class="bg-red-500 px-6 py-6 rounded-full ">Book a Call</button></a>
+
+                </div>
+            </section>
+        </main>
+    </div>
+    <!-- <script src="../scripts/Interview2.js"></script> -->
+    <script src="../scripts/interview.js"></script>
+    <script type="module" src="../scripts/Interview2.js"></script>
+    <script>
+        function downloadAnswers() {
+            const { jsPDF } = window.jspdf;
+            const doc = new jsPDF();
+            const form = document.getElementById('interviewForm');
+
+            doc.setFontSize(12);
+            let y = 20;
+
+            form.querySelectorAll('.space-y-2').forEach((questionContainer, index) => {
+                const questionLabel = questionContainer.querySelector('label').textContent.trim();
+                const questionTextarea = questionContainer.querySelector('textarea');
+                const answer = questionTextarea.value.trim();
+
+                // Add question
+                doc.setFont('helvetica', 'bold');
+                doc.text(`Q${index + 1}: ${questionLabel}`, 10, y);
+                y += 10;
+
+                // Add answer
+                doc.setFont('helvetica', 'normal');
+                const splitAnswer = doc.splitTextToSize(answer || 'No answer provided', 180);
+                doc.text(splitAnswer, 10, y);
+                y += splitAnswer.length * 7 + 10;
+
+                // Add follow-up questions and answers
+                const followUpContainer = questionContainer.querySelector('.follow-up-container');
+                if (!followUpContainer.classList.contains('hidden')) {
+                    const followUpQuestions = followUpContainer.querySelectorAll('.follow-up-question');
+
+                    followUpQuestions.forEach((followUp, followUpIndex) => {
+                        const followUpQuestionText = followUp.querySelector('p').textContent.trim();
+                        const followUpAnswer = followUp.querySelector('.follow-up-answer').value.trim();
+
+                        doc.setFont('helvetica', 'bold');
+                        doc.text(`   Follow-up Q${followUpIndex + 1}: ${followUpQuestionText}`, 10, y);
+                        y += 10;
+
+                        doc.setFont('helvetica', 'normal');
+                        const splitFollowUpAnswer = doc.splitTextToSize(followUpAnswer || 'No answer provided', 170);
+                        doc.text(splitFollowUpAnswer, 20, y);
+                        y += splitFollowUpAnswer.length * 7 + 10;
+                    });
+                }
+
+                // Add page break if needed
+                if (y > 280) {
+                    doc.addPage();
+                    y = 20;
+                }
+            });
+
+            doc.save('interview_answers.pdf');
+        }
+    </script>
+</body>
+
+</html>
