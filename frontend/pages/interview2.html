@@ -1,0 +1,167 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>BPrep - Interview Preparation</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/lucide-icons/0.292.0/font/lucide.min.css">
+</head>
+<body class="bg-gray-50">
+    <div class="flex min-h-screen">
+        <!-- Sidebar -->
+        <aside class="w-64 bg-white border-r shadow-md fixed left-0 top-0 bottom-0 flex flex-col z-50">
+            <div class="p-6 border-b">
+                <h2 class="text-2xl font-bold text-gray-800">BPrep</h2>
+            </div>
+            
+            <nav class="flex-1 py-4">
+                <a href="./profile.html" class="flex items-center space-x-3 px-6 py-3 hover:bg-gray-100 transition-colors group">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-user text-gray-500 group-hover:text-blue-600">
+                        <path d="M19 21v-2a4 4 0 0 0-4-4H9a4 4 0 0 0-4 4v2"/>
+                        <circle cx="12" cy="7" r="4"/>
+                    </svg>
+                    <span class="text-gray-700 group-hover:text-blue-600">Profile</span>
+                </a>
+                
+                <a href="./interview2.html" class="flex items-center space-x-3 px-6 py-3 hover:bg-gray-100 transition-colors group">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-clipboard-list text-gray-500 group-hover:text-blue-600">
+                        <rect width="8" height="4" x="8" y="2" rx="1" ry="1"/>
+                        <path d="M16 4h2a2 2 0 0 1 2 2v14a2 2 0 0 1-2 2H6a2 2 0 0 1-2-2V6a2 2 0 0 1 2-2h2"/>
+                        <path d="M12 11h4"/>
+                        <path d="M12 16h4"/>
+                        <path d="M8 11h.01"/>
+                        <path d="M8 16h.01"/>
+                    </svg>
+                    <span class="text-gray-700 group-hover:text-blue-600">Interview Prep</span>
+                </a>
+            </nav>
+            
+            <div class="border-t p-4">
+                <button class="w-full flex items-center space-x-3 px-4 py-2 hover:bg-red-50 rounded-md group">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-log-out text-gray-500 group-hover:text-red-600">
+                        <path d="M9 21H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h4"/>
+                        <polyline points="16 17 21 12 16 7"/>
+                        <line x1="21" x2="9" y1="12" y2="12"/>
+                    </svg>
+                    <span class="text-gray-700 group-hover:text-red-600">Logout</span>
+                </button>
+            </div>
+        </aside>
+
+        <!-- Main Content Area -->
+        <div class="ml-64 flex-1 flex flex-col">
+            <!-- Navbar -->
+            <nav class="bg-white shadow-md sticky top-0 z-40">
+                <div class="container mx-auto px-4 flex justify-between items-center h-16">
+                    <div class="flex items-center space-x-4">
+                        <span class="text-xl font-bold text-gray-800">BPrep Dashboard</span>
+                    </div>
+                    
+                    <div class="flex items-center space-x-4">
+                        <div class="flex items-center space-x-2">
+                            <div class="w-8 h-8 rounded-full bg-blue-500 flex items-center justify-center text-white font-bold">
+                                P
+                            </div>
+                            <span class="text-sm font-medium">Example Profile</span>
+                        </div>
+                    </div>
+                </div>
+            </nav>
+
+            <!-- Interview Content -->
+            <main class="p-6 bg-gray-50">
+                <div class="container mx-auto">
+                    <div class="flex justify-between items-center mb-6">
+                        <h1 class="text-2xl font-bold text-gray-800">Interview Preparation</h1>
+                        <div class="flex space-x-4">
+                            <button onclick="addQuestion()" class="bg-blue-500 text-white px-4 py-2 rounded-md flex items-center space-x-2 hover:bg-blue-600 transition">
+                                <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-plus-square">
+                                    <rect width="18" height="18" x="3" y="3" rx="2" ry="2"/>
+                                    <line x1="12" x2="12" y1="8" y2="16"/>
+                                    <line x1="8" x2="16" y1="12" y2="12"/>
+                                </svg>
+                                <span>Add Question</span>
+                            </button>
+                            <button onclick="downloadAnswers()" class="bg-green-500 text-white px-4 py-2 rounded-md flex items-center space-x-2 hover:bg-green-600 transition">
+                                <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-download">
+                                    <path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/>
+                                    <polyline points="7 10 12 15 17 10"/>
+                                    <line x1="12" x2="12" y1="15" y2="3"/>
+                                </svg>
+                                <span>Download Answers</span>
+                            </button>
+                        </div>
+                    </div>
+
+                    <div id="questionsContainer" class="space-y-4">
+                        <!-- Questions will be dynamically added here -->
+                        <div class="text-center py-12 bg-white rounded-lg shadow">
+                            <p class="text-gray-500">No interview questions yet. Add your first question!</p>
+                        </div>
+                    </div>
+                </div>
+            </main>
+        </div>
+    </div>
+
+    <script src=""></script>
+    <script>
+        // JavaScript for dynamic functionality
+        function addQuestion() {
+            const newQuestionText = prompt("Enter your new interview question:");
+            if (newQuestionText && newQuestionText.trim()) {
+                const questionsContainer = document.getElementById('questionsContainer');
+                
+                // Clear initial message if it exists
+                if (questionsContainer.querySelector('.text-center')) {
+                    questionsContainer.innerHTML = '';
+                }
+
+                const questionCard = document.createElement('div');
+                questionCard.className = 'bg-white rounded-lg shadow-md p-6 mb-4 transition-all duration-300 hover:shadow-lg';
+                questionCard.innerHTML = `
+                    <div class="flex justify-between items-center mb-4">
+                        <label class="text-sm font-medium text-gray-800">${newQuestionText}</label>
+                        <div class="flex space-x-2">
+                            <button class="text-blue-500 hover:text-blue-700 transition">
+                                <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-pencil">
+                                    <path d="M17 3a2.85 2.83 0 1 1 4 4L7.5 20.5 2 22l1.5-5.5Z"/>
+                                    <path d="m15 5 4 4"/>
+                                </svg>
+                            </button>
+                            <button class="text-red-500 hover:text-red-700 transition">
+                                <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-trash-2">
+                                    <path d="M3 6h18"/>
+                                    <path d="M19 6v14c0 1-1 2-2 2H7c-1 0-2-1-2-2V6"/>
+                                    <path d="M8 6V4c0-1 1-2 2-2h4c1 0 2 1 2 2v2"/>
+                                    <line x1="10" x2="10" y1="11" y2="17"/>
+                                    <line x1="14" x2="14" y1="11" y2="17"/>
+                                </svg>
+                            </button>
+                        </div>
+                    </div>
+                    <textarea rows="4" class="w-full px-3 py-2 border rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500 resize-none" placeholder="Craft your answer here..."></textarea>
+                `;
+
+                questionsContainer.appendChild(questionCard);
+            }
+        }
+
+        function downloadAnswers() {
+            const questions = document.querySelectorAll('#questionsContainer > div');
+            const answersText = Array.from(questions).map(q => {
+                const questionText = q.querySelector('label').textContent;
+                const answerText = q.querySelector('textarea').value;
+                return `Question: ${questionText}\nAnswer: ${answerText}`;
+            }).join('\n\n');
+
+            const blob = new Blob([answersText], { type: 'text/plain' });
+            const link = document.createElement('a');
+            link.href = URL.createObjectURL(blob);
+            link.download = 'interview_answers.txt';
+            link.click();
+        }
+    </script>
+</body>
+</html>

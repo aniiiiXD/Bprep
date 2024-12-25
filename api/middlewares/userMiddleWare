@@ -1,0 +1,57 @@
+const session = require('express-session');
+const { userModel } = require('../db'); // Assuming you have a User model
+   
+const sessionMiddleware = (req, res, next) => {
+  // Check if user is authenticated
+  if (req.session && req.session.userId) {
+    // Find user to ensure session corresponds to valid user
+    User.findByPk(req.session.userId)
+      .then(user => {
+        if (user) {
+          // Attach user to request object
+          req.user = {
+            id: user.id,
+            // Add other user details as needed
+          };
+          next();
+        } else { 
+          // Invalid session, destroy it
+          req.session.destroy();
+          return res.status(401).json({
+            success: false,
+            message: 'Invalid session'
+          });
+        }
+      })
+      .catch(error => {
+        return res.status(500).json({
+          success: false,
+          message: 'Authentication error',
+          error: error.message
+        });
+      });
+  } else {
+    // No session found
+    return res.status(401).json({
+      success: false,
+      message: 'Unauthorized: Please log in'
+    });
+  }
+};
+
+// Session configuration
+const sessionConfig = {
+  secret: process.env.SESSION_SECRET || 's3cret!prep', // Use strong secret
+  resave: false,
+  saveUninitialized: false,
+  cookie: {
+    httpOnly: true,
+    secure: process.env.NODE_ENV === 'production', // Use secure in production
+    maxAge: 24 * 60 * 60 * 1000 // 24 hours
+  }
+};
+
+module.exports = {
+  sessionMiddleware,
+  sessionConfig
+};

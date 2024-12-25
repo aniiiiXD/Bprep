@@ -1,0 +1,173 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>BPrep - Profile</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/lucide-icons/0.292.0/font/lucide.min.css">
+</head>
+<body class="bg-gray-50">
+    <div class="flex min-h-screen">
+        <!-- Sidebar -->
+        <aside class="w-64 bg-white border-r shadow-md fixed left-0 top-0 bottom-0 flex flex-col z-50">
+            <div class="p-6 border-b">
+                <h2 class="text-2xl font-bold text-gray-800">BPrep</h2>
+            </div>
+            
+            <nav class="flex-1 py-4">
+                <a href="#" class="flex items-center space-x-3 px-6 py-3 bg-gray-100 transition-colors group">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-user text-blue-600">
+                        <path d="M19 21v-2a4 4 0 0 0-4-4H9a4 4 0 0 0-4 4v2"/>
+                        <circle cx="12" cy="7" r="4"/>
+                    </svg>
+                    <span class="text-blue-600">Profile</span>
+                </a>
+                
+                <a href="./interview2.html" class="flex items-center space-x-3 px-6 py-3 hover:bg-gray-100 transition-colors group">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-clipboard-list text-gray-500 group-hover:text-blue-600">
+                        <rect width="8" height="4" x="8" y="2" rx="1" ry="1"/>
+                        <path d="M16 4h2a2 2 0 0 1 2 2v14a2 2 0 0 1-2 2H6a2 2 0 0 1-2-2V6a2 2 0 0 1 2-2h2"/>
+                        <path d="M12 11h4"/>
+                        <path d="M12 16h4"/>
+                        <path d="M8 11h.01"/>
+                        <path d="M8 16h.01"/>
+                    </svg>
+                    <span class="text-gray-700 group-hover:text-blue-600">Interview Prep</span>
+                </a>
+            </nav>
+            
+            <div class="border-t p-4">
+                <button class="w-full flex items-center space-x-3 px-4 py-2 hover:bg-red-50 rounded-md group">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-log-out text-gray-500 group-hover:text-red-600">
+                        <path d="M9 21H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h4"/>
+                        <polyline points="16 17 21 12 16 7"/>
+                        <line x1="21" x2="9" y1="12" y2="12"/>
+                    </svg>
+                    <span class="text-gray-700 group-hover:text-red-600">Logout</span>
+                </button>
+            </div>
+        </aside>
+
+        <!-- Main Content Area -->
+        <div class="ml-64 flex-1 flex flex-col">
+            <!-- Navbar -->
+            <nav class="bg-white shadow-md sticky top-0 z-40">
+                <div class="container mx-auto px-4 flex justify-between items-center h-16">
+                    <div class="flex items-center space-x-4">
+                        <span class="text-xl font-bold text-gray-800">BPrep Dashboard</span>
+                    </div>
+                    
+                    <div class="flex items-center space-x-4">
+                        <div class="flex items-center space-x-2">
+                            <div class="w-8 h-8 rounded-full bg-blue-500 flex items-center justify-center text-white font-bold">
+                                P
+                            </div>
+                            <span class="text-sm font-medium">Example Profile</span>
+                        </div>
+                    </div>
+                </div>
+            </nav>
+
+            <!-- Profile Content -->
+            <main class="p-6 bg-gray-50">
+                <div class="bg-white rounded-lg shadow-md p-6">
+                    <div class="flex justify-between items-center mb-6">
+                        <h2 class="text-2xl font-semibold text-gray-800">Profile Details</h2>
+                        <div class="space-x-2">
+                            <button id="editToggle" class="bg-blue-600 text-white px-4 py-2 rounded-md hover:bg-blue-700 transition-colors flex items-center">
+                                <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="mr-2 lucide lucide-edit">
+                                    <path d="M11 4H4a2 2 0 0 0-2 2v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2v-7"/>
+                                    <path d="M18.5 2.5a2.121 2.121 0 0 1 3 3L12 15l-4 1 1-4 9.5-9.5z"/>
+                                </svg> 
+                                Edit Profile
+                            </button>
+                        </div>
+                    </div>
+
+                    <form id="profileForm" class="grid grid-cols-1 md:grid-cols-2 gap-6">
+                        <div class="space-y-2">
+                            <label class="block text-sm font-medium text-gray-700">
+                                Full Name <span class="text-red-500">*</span>
+                            </label>
+                            <input 
+                                type="text" 
+                                id="fullName" 
+                                name="fullName" 
+                                class="w-full px-3 py-2 border border-gray-300 rounded-md bg-white text-gray-900 disabled:bg-gray-100 focus:outline-none focus:ring-2 focus:ring-blue-500" 
+                                disabled
+                            />
+                        </div>
+
+                        <div class="space-y-2">
+                            <label class="block text-sm font-medium text-gray-700">
+                                Phone Number
+                            </label>
+                            <input 
+                                type="tel" 
+                                id="phoneNumber" 
+                                name="phoneNumber" 
+                                class="w-full px-3 py-2 border border-gray-300 rounded-md bg-white text-gray-900 disabled:bg-gray-100 focus:outline-none focus:ring-2 focus:ring-blue-500" 
+                                disabled
+                            />
+                        </div>
+
+                        <div class="space-y-2">
+                            <label class="block text-sm font-medium text-gray-700">
+                                CAT Score
+                            </label>
+                            <input 
+                                type="number" 
+                                id="CATscore" 
+                                name="CATscore" 
+                                class="w-full px-3 py-2 border border-gray-300 rounded-md bg-white text-gray-900 disabled:bg-gray-100 focus:outline-none focus:ring-2 focus:ring-blue-500" 
+                                disabled
+                            />
+                        </div>
+
+                        <!-- Add more fields similarly -->
+                    </form>
+                </div>
+            </main>
+        </div>
+    </div>
+
+    <script>
+        // Profile Edit Functionality
+        document.addEventListener('DOMContentLoaded', () => {
+            const editToggle = document.getElementById('editToggle');
+            const profileForm = document.getElementById('profileForm');
+            const inputs = profileForm.querySelectorAll('input');
+            let isEditing = false;
+
+            editToggle.addEventListener('click', () => {
+                isEditing = !isEditing;
+                inputs.forEach(input => {
+                    input.disabled = !isEditing;
+                });
+
+                if (isEditing) {
+                    editToggle.innerHTML = `
+                        <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="mr-2 lucide lucide-save">
+                            <path d="M19 21H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h11l5 5v11a2 2 0 0 1-2 2z"/>
+                            <polyline points="17 21 17 13 7 13 7 21"/>
+                            <polyline points="7 3 7 8 15 8"/>
+                        </svg>
+                        Save Profile
+                    `;
+                } else {
+                    editToggle.innerHTML = `
+                        <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="mr-2 lucide lucide-edit">
+                            <path d="M11 4H4a2 2 0 0 0-2 2v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2v-7"/>
+                            <path d="M18.5 2.5a2.121 2.121 0 0 1 3 3L12 15l-4 1 1-4 9.5-9.5z"/>
+                        </svg>
+                        Edit Profile
+                    `;
+                    // Here you would typically save the data
+                    console.log('Saving profile data...');
+                }
+            });
+        });
+    </script>
+</body>
+</html>
