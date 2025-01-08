@@ -80,13 +80,13 @@ const App = () => {
         <Route path="/login" element={<LoginPage />} />
         <Route path="/" element={<Layout />}>
           {/* Nested Routes */}
-          <Route index element={<Navigate to="/interview" replace />} />
+          <Route index element={<Navigate to="/login" replace />} />
           <Route path="profile" element={<Profile />} />
           <Route path="interview" element={<Interview />} />
 
 
           {/* Add more routes as needed */}
-          <Route path="*" element={<Navigate to="/login" replace />} />
+          <Route path="*" element={<Navigate to="/interview" replace />} />
         </Route>
       </Routes>
     </BrowserRouter>

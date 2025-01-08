@@ -14,7 +14,7 @@ logRouter.get('/', userController.loadAuth);
 
 logRouter.get('/auth/google' , passport.authenticate('google', { scope: 
 	[ 'email', 'profile' ] 
-}));   
+}));    
 
 logRouter.get( '/auth/google/callback', 
 	passport.authenticate( 'google', { 
