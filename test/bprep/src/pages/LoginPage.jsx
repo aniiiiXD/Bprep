@@ -13,7 +13,7 @@ const LoginPage = () => {
           </div>
 
           <a
-            href="http://localhost:3003/api/OGoogle/auth/google"
+            href="https://bprep-backend-cikh309f6-aniiiixds-projects.vercel.app/api/OGoogle/auth/google"
             className="w-full py-3 px-4 bg-white text-gray-700 font-medium rounded-lg border border-gray-300 hover:bg-gray-50 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-red-500 flex items-center justify-center space-x-2 transition duration-200 ease-in-out"
           >
             <svg

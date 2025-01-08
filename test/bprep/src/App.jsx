@@ -86,7 +86,7 @@ const App = () => {
 
 
           {/* Add more routes as needed */}
-          <Route path="*" element={<Navigate to="/interview" replace />} />
+          <Route path="*" element={<Navigate to="/login" replace />} />
         </Route>
       </Routes>
     </BrowserRouter>

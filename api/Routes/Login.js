@@ -35,7 +35,7 @@ passport.deserializeUser(async (id, done) => {
 passport.use(new GoogleStrategy({
   clientID: process.env.CLIENT_ID,
   clientSecret: process.env.CLIENT_SECRET,
-  callbackURL: "http://localhost:3003/api/OGoogle/auth/google",
+  callbackURL: "https://bprep-backend-cikh309f6-aniiiixds-projects.vercel.app/api/OGoogle/auth/google",
   passReqToCallback: true
 }, async (request, accessToken, refreshToken, profile, done) => {
   try {

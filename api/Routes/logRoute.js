@@ -7,7 +7,7 @@ const {userModel} = require('../db')
 
 logRouter.use(passport.initialize());
 logRouter.use(passport.session());
-
+ 
  
 logRouter.get('/', userController.loadAuth); 
 
@@ -18,8 +18,8 @@ logRouter.get('/auth/google' , passport.authenticate('google', { scope:
 
 logRouter.get( '/auth/google/callback', 
 	passport.authenticate( 'google', { 
-		failureRedirect: 'http://localhost:5173/profile',
-    successRedirect: 'http://localhost:5173/interview'
+		failureRedirect: 'https://bprep.vercel.app/profile',
+    successRedirect: 'https://bprep.vercel.app/interview'
 }));
 
 logRouter.get('/success', async (req, res) => {
@@ -43,7 +43,7 @@ logRouter.get('/success', async (req, res) => {
       }
   
       // You might want to create a JWT or session here
-      res.redirect('http://localhost:3000/dashboard'); // Redirect to frontend dashboard
+      res.redirect('https://bprep.vercel.app/interview'); // Redirect to frontend dashboard
     } catch (error) {
       console.error('Authentication error:', error);
       res.redirect('/api/OGoogle/failure');
