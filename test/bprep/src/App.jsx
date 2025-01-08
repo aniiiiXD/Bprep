@@ -25,7 +25,7 @@ const Layout = () => {
 
   const handleLogout = () => {
     // Simple logout - redirect to login
-    navigate('/login');
+    navigate('https://bprep.vercel.app/login');
   };
 
   return (
