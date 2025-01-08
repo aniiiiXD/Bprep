@@ -10,7 +10,7 @@ const ProfileRouter = require("./Routes/Profile");
 const router = require('./Routes/Question'); // Ensure this matches the file name
 const logRouter = require('./Routes/logRoute');
 
-// Middleware imports
+// Middleware imports 
 const { sessionConfig } = require('./middlewares/session');
 
 const app = express();
@@ -64,7 +64,7 @@ app.use((err, req, res, next) => {
 });
 
 // Database and server connection
-const mongoURI = process.env.MONGODB_URI || "mongodb://localhost:27017/Bprep";
+const mongoURI = process.env.MONGODB_URI || "mongodb+srv://aniruddhsharma:damn@cluster0.pwscr.mongodb.net/?retryWrites=true&w=majority&appName=Cluster0";
 
 async function main() {
   try {
