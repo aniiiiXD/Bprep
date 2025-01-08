@@ -11,7 +11,7 @@ import {
 
 // Axios instance with credentials
 const api = axios.create({
-  baseURL: 'http://localhost:3003/api',
+  baseURL: 'https://bprep-backend-cikh309f6-aniiiixds-projects.vercel.app/api',
   withCredentials: true
 });
 

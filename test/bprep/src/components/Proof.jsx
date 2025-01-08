@@ -3,7 +3,7 @@ import { Edit, Save } from 'lucide-react';
 import axios from 'axios';
 
 const api = axios.create({
-  baseURL: 'http://localhost:3003/api',
+  baseURL: 'https://bprep-backend-cikh309f6-aniiiixds-projects.vercel.app/api',
   withCredentials: true
 });
 
